@@ -20,7 +20,7 @@ G_BEGIN_DECLS  // extern "C" {
  *
  * Since: 0.1.0
  */
-bool
+gboolean
 on_buffer_osd_distance(GstPadProbeInfo * info);
 
 G_END_DECLS // }

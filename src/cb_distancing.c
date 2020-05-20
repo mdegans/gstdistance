@@ -40,8 +40,8 @@
 static float
 calculate_how_dangerous(NvDsMetaList* l_obj, float danger_distance);
 
-GstPadProbeReturn
-on_buffer_osd_distance(GstPad * pad, GstPadProbeInfo * info)
+gboolean
+on_buffer_osd_distance(GstPadProbeInfo * info)
 {
   float how_dangerous=0.0f;
   float color_val=0.0f;
