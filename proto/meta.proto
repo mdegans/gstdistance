@@ -1,0 +1,80 @@
+syntax = "proto3";
+/**
+ * Represents a video frame.
+ */
+message Frame {
+  /**
+   * The video frame number.
+   */
+  int32 frame_num = 1;
+  /**
+   * The source id (eg. camera id).
+   */
+  uint32 source_id = 2;
+  /**
+   * People in this video frame.
+   */
+  repeated Person people = 3;
+}
+
+/**
+ * Represents a person in a video frame.
+ */
+message Person {
+  /**
+   * The unique id assigned by the tracker.
+   */
+  int32 uid = 1;
+  /**
+   * Whether this person's danger is > 0.0
+   */
+  bool is_danger = 2;
+  /**
+   * The exact danger score of a person. It's easier to explain by example:
+   *
+   * a 6 foot person with another person standing 6 feet away has a score of 0.0
+   *
+   * a 6 foot person with another person standing 0 feet away has a score of 1.0
+   *
+   * (yes, I realise this isn't possible)
+   *
+   * a 6 foot person with another person standing 3 feet away has a score of 0.5
+   *
+   * a 6 foot person with **two people** standing 3 feet away has a score of 1.0
+   *
+   * a 6 foot person with *three people* standing 3 feet away has a score of 1.5
+   *
+   * ...and so on... it's a screen space Euclidean distance calculation where if
+   * another person comes within the bounding box height's distance, that normalized
+   * violation is added to this score. Using the bounding box height isn't an exact
+   * science, but neither are other methods requiring complex scene calibrations that
+   * only really work well on flat terrain. This works out of the box and is fast AF.
+   */
+  float danger_val = 3;
+  /**
+   * The bounding box coordinates of this person.
+   */
+  BBox bbox = 4;
+}
+
+/**
+ * Represents a bounding box.
+ */
+message BBox {
+  /**
+   * X origin of this box.
+   */
+  uint32 left = 1;
+  /**
+   * Y origin of this box.
+   */
+  uint32 top = 2;
+  /**
+   * Height of this box.
+   */
+  uint32 height = 3;
+  /**
+   * Width of this box.
+   */
+  uint32 width = 4;
+}

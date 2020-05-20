@@ -1,7 +1,7 @@
 cc = meson.get_compiler('c')
 
 libgstdistance_sources = [
-  # 'cb_distancing.c',
+  'meta.pb-c.c',
   'nvdistance.vala',
   'distance.vala',
   'plugin.vala',
@@ -33,6 +33,7 @@ libgstdistance = shared_library(meson.project_name(), libgstdistance_sources,
   vala_gir: libgstdistance_gir,
   dependencies: libgstdistance_deps,
   include_directories: libgstdistance_inc,
+  link_with: meta_lib,
   install: true,
   install_dir: [plugins_install_dir, true, true, true],
 )

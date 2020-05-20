@@ -31,6 +31,7 @@
  */
 
 #include "cb_distancing.h"
+#include "meta.pb-c.h"
 
 #include "gstnvdsmeta.h"
 

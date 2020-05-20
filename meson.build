@@ -7,5 +7,6 @@ project('gstdistance', ['c', 'vala'],
 
 libgstdistance_inc = include_directories('include')
 
+subdir('proto')
 subdir('src')
 # subdir('test')
