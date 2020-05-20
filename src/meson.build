@@ -1,6 +1,7 @@
 cc = meson.get_compiler('c')
 
 libgstdistance_sources = [
+  'cb_distancing.c',
   'meta.pb-c.c',
   'nvdistance.vala',
   'distance.vala',
