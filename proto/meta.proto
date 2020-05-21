@@ -36,7 +36,7 @@ message Person {
    *
    * a 6 foot person with another person standing 0 feet away has a score of 1.0
    *
-   * (yes, I realise this isn't possible)
+   * (yes, I realise this isn't possible without explosions)
    *
    * a 6 foot person with another person standing 3 feet away has a score of 0.5
    *
@@ -45,10 +45,11 @@ message Person {
    * a 6 foot person with *three people* standing 3 feet away has a score of 1.5
    *
    * ...and so on... it's a screen space Euclidean distance calculation where if
-   * another person comes within the bounding box height's distance, that normalized
-   * violation is added to this score. Using the bounding box height isn't an exact
-   * science, but neither are other methods requiring complex scene calibrations that
-   * only really work well on flat terrain. This works out of the box and is fast AF.
+   * another person comes within the bounding box height's distance, that
+   * normalized violation is added to this score. Using the bounding box height
+   * isn't an exact science, but neither are other methods requiring complex
+   * scene calibrations that only really work well on flat terrain. This works
+   * out of the box and is fast AF.
    */
   float danger_val = 3;
   /**
